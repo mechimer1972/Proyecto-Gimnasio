@@ -126,8 +126,9 @@ footer {
         background: url(img/carousel7.jpg) no-repeat;
         background: url(img/carousel6.jpg) no-repeat;
         background: url(img/equipamiento.jpg) no-repeat;
-        background: url(img/nutricionista.jpg);
-        background: url(img/suplementos.jpg);
+        background: url(img/nutricionista.jpg) no-repeat;
+        background: url(img/suplementos.jpg) no-repeat;
+        background: url(img/indumentaria.jpg);
         background: url(img/boxing.jpg) no-repeat;
         width:  100%;
         height: 600px;
