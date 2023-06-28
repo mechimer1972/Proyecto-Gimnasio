@@ -1,1 +1,21 @@
 <h1>Sitio de Contacto</h1>
+<form action="/contacto" method="post" class="formulario">
+<p>
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre">
+</p>
+<p>
+    <label for="email">Email</label>
+    <input type="text" name="email">
+</p>
+<p>
+    <label for="telefono">Teléfono</label>
+    <input type="text" name="telefono">
+</p>
+<p>
+    <label for="mensaje">Mensaje</label>
+    <textarea name="mensaje"></textarea>
+</p>
+<p class="acciones"><input type="submit" value="Enviar"/></p>
+</form>
+{{message}}
