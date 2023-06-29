@@ -101,3 +101,61 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 require('dotenv').config();
+
+const session = require('express-session');
+
+app.use(session({
+  secret: 'inserte clave aqui' ,
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.get('/ejemplo', function(req, res) {
+  if (req.session.nombre) {
+      res.send('Hola' + req.session.nombre) ;
+  } else {
+      res.send('Hola ususario desconocido') ;
+  }
+});
+
+app.get('/', function(req, res) {
+  var conocido = Boolean(req.session.nombre);
+
+  res.render('index', {
+    title: 'Sesiones en Express.js',
+    conocido: conocido,
+    nombre: req.session.nombre
+  });
+});
+
+app. post('/ingresar', function(req, res) {
+  if (req.body.nombre) {
+    req.session.nombre = req.body.nombre
+  }
+  res.redirect('/');
+});
+
+app.get('/salir', function (req, res) {
+  req.session.destroy();
+  res.redirect('/');
+});
+
+app.use(function(req, res, nex) {
+  if (!req.session.vistas) {
+    req.session.vistas = {};
+  }
+  if (!req.session.vistas[req.originalUrl]) {
+    req.session.vistas[req.originalUrl] = 1;
+  } else {
+    req.session.vistas[req.originalUrl]++;
+  }
+
+  next();
+});
+
+app.get('/pagina1', function(req, res){
+  res.render('pagina', {
+    nombre: 'pagina1',
+    vistas: req.session.vistas[req.originalUrl]
+  });
+});
