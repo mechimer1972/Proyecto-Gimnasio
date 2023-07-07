@@ -100,6 +100,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
 require('dotenv').config();
 
 const session = require('express-session');
